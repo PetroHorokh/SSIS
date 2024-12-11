@@ -11,11 +11,21 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="61"
-  DTS:VersionGUID="{0852F46B-F88A-4183-8258-0EAD28C8B20C}">
+  DTS:VersionBuild="87"
+  DTS:VersionGUID="{2C69C0BB-68EF-4E40-9335-5FA699424612}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DCNOTE142.Clinic]"
+      DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{7CC77007-C008-470F-9117-8A78E69FCB54}"
+      DTS:ObjectName="DCNOTE142.Clinic">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DCNOTE142;Initial Catalog=Clinic;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[DCNOTE142.Clinic1]"
       DTS:CreationName="OLEDB"
@@ -26,6 +36,16 @@
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=DCNOTE142;Initial Catalog=Clinic;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{FB4F508F-08AF-4E05-B2C3-05254AC492B5}DCNOTE142.Clinic1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
+      DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{4E21A73F-6618-4BEB-9EDE-B17AD0813724}"
+      DTS:ObjectName="DCNOTE142.ClinicDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DCNOTE142;Initial Catalog=ClinicDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -89,7 +109,7 @@ FROM [dbo].[Treatment]</property>
                   description="The Source database table name."
                   expressionType="Notify"
                   name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[Qualification]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[Doctor]</property>
                 <property
                   dataType="System.Int32"
                   description="Specify the mode to retrieve external column information"
@@ -102,8 +122,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_DateEnd\Date.Connections[IDbConnection]"
-                  connectionManagerID="{94C27DC2-6DC8-4174-9A24-BB58783D71C9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.Clinic]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -248,8 +268,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_DateEnd\Dim_Date.Connections[IDbConnection]"
-                  connectionManagerID="{F54E23FD-8426-4A9A-9DE0-DFD760A6248C}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -405,8 +425,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_DateStart\Date.Connections[IDbConnection]"
-                  connectionManagerID="{94C27DC2-6DC8-4174-9A24-BB58783D71C9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.Clinic]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -551,8 +571,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_DateStart\Dim_Date.Connections[IDbConnection]"
-                  connectionManagerID="{F54E23FD-8426-4A9A-9DE0-DFD760A6248C}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -700,8 +720,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_Doctor\Dim_Doctor.Connections[IDbConnection]"
-                  connectionManagerID="{F54E23FD-8426-4A9A-9DE0-DFD760A6248C}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -714,19 +734,22 @@ FROM [dbo].[Treatment]</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\Dim_Doctor\Dim_Doctor.Inputs[ADO NET Destination Input].Columns[FirstName]"
-                      cachedDataType="nText"
+                      cachedDataType="wstr"
+                      cachedLength="50"
                       cachedName="FirstName"
                       externalMetadataColumnId="Package\Dim_Doctor\Dim_Doctor.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
                       lineageId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].Columns[FirstName]" />
                     <inputColumn
                       refId="Package\Dim_Doctor\Dim_Doctor.Inputs[ADO NET Destination Input].Columns[LastName]"
-                      cachedDataType="nText"
+                      cachedDataType="wstr"
+                      cachedLength="50"
                       cachedName="LastName"
                       externalMetadataColumnId="Package\Dim_Doctor\Dim_Doctor.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
                       lineageId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].Columns[LastName]" />
                     <inputColumn
                       refId="Package\Dim_Doctor\Dim_Doctor.Inputs[ADO NET Destination Input].Columns[Address]"
-                      cachedDataType="nText"
+                      cachedDataType="wstr"
+                      cachedLength="120"
                       cachedName="Address"
                       externalMetadataColumnId="Package\Dim_Doctor\Dim_Doctor.Inputs[ADO NET Destination Input].ExternalColumns[Address]"
                       lineageId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].Columns[Address]" />
@@ -831,8 +854,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_Doctor\Doctor.Connections[IDbConnection]"
-                  connectionManagerID="{94C27DC2-6DC8-4174-9A24-BB58783D71C9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.Clinic]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -852,28 +875,31 @@ FROM [dbo].[Treatment]</property>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].Columns[FirstName]"
-                      dataType="nText"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="50"
                       lineageId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].Columns[FirstName]"
                       name="FirstName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].Columns[LastName]"
-                      dataType="nText"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="50"
                       lineageId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].Columns[LastName]"
                       name="LastName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].Columns[Address]"
-                      dataType="nText"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].ExternalColumns[Address]"
+                      length="120"
                       lineageId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].Columns[Address]"
                       name="Address"
                       truncationRowDisposition="FailComponent" />
@@ -886,15 +912,18 @@ FROM [dbo].[Treatment]</property>
                       name="Id" />
                     <externalMetadataColumn
                       refId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="50"
                       name="FirstName" />
                     <externalMetadataColumn
                       refId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="50"
                       name="LastName" />
                     <externalMetadataColumn
                       refId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Output].ExternalColumns[Address]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="120"
                       name="Address" />
                   </externalMetadataColumns>
                 </output>
@@ -910,17 +939,20 @@ FROM [dbo].[Treatment]</property>
                       name="Id" />
                     <outputColumn
                       refId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Error Output].Columns[FirstName]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="50"
                       lineageId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Error Output].Columns[FirstName]"
                       name="FirstName" />
                     <outputColumn
                       refId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Error Output].Columns[LastName]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="50"
                       lineageId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Error Output].Columns[LastName]"
                       name="LastName" />
                     <outputColumn
                       refId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Error Output].Columns[Address]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="120"
                       lineageId="Package\Dim_Doctor\Doctor.Outputs[ADO NET Source Error Output].Columns[Address]"
                       name="Address" />
                     <outputColumn
@@ -1002,8 +1034,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_Illness\Dim_Illness.Connections[IDbConnection]"
-                  connectionManagerID="{F54E23FD-8426-4A9A-9DE0-DFD760A6248C}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1016,7 +1048,8 @@ FROM [dbo].[Treatment]</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\Dim_Illness\Dim_Illness.Inputs[ADO NET Destination Input].Columns[Name]"
-                      cachedDataType="i4"
+                      cachedDataType="wstr"
+                      cachedLength="50"
                       cachedName="Name"
                       externalMetadataColumnId="Package\Dim_Illness\Dim_Illness.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
                       lineageId="Package\Dim_Illness\Illness.Outputs[ADO NET Source Output].Columns[Name]" />
@@ -1035,7 +1068,8 @@ FROM [dbo].[Treatment]</property>
                       name="Id" />
                     <externalMetadataColumn
                       refId="Package\Dim_Illness\Dim_Illness.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
-                      dataType="i4"
+                      dataType="wstr"
+                      length="2147483647"
                       name="Name" />
                     <externalMetadataColumn
                       refId="Package\Dim_Illness\Dim_Illness.Inputs[ADO NET Destination Input].ExternalColumns[Sub_Id]"
@@ -1110,8 +1144,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_Illness\Illness.Connections[IDbConnection]"
-                  connectionManagerID="{94C27DC2-6DC8-4174-9A24-BB58783D71C9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.Clinic]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1131,10 +1165,11 @@ FROM [dbo].[Treatment]</property>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Dim_Illness\Illness.Outputs[ADO NET Source Output].Columns[Name]"
-                      dataType="i4"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Dim_Illness\Illness.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                      length="50"
                       lineageId="Package\Dim_Illness\Illness.Outputs[ADO NET Source Output].Columns[Name]"
                       name="Name"
                       truncationRowDisposition="FailComponent" />
@@ -1147,7 +1182,8 @@ FROM [dbo].[Treatment]</property>
                       name="Id" />
                     <externalMetadataColumn
                       refId="Package\Dim_Illness\Illness.Outputs[ADO NET Source Output].ExternalColumns[Name]"
-                      dataType="i4"
+                      dataType="wstr"
+                      length="50"
                       name="Name" />
                   </externalMetadataColumns>
                 </output>
@@ -1163,7 +1199,8 @@ FROM [dbo].[Treatment]</property>
                       name="Id" />
                     <outputColumn
                       refId="Package\Dim_Illness\Illness.Outputs[ADO NET Source Error Output].Columns[Name]"
-                      dataType="i4"
+                      dataType="wstr"
+                      length="50"
                       lineageId="Package\Dim_Illness\Illness.Outputs[ADO NET Source Error Output].Columns[Name]"
                       name="Name" />
                     <outputColumn
@@ -1245,8 +1282,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_Medicine\Dim_Medicine.Connections[IDbConnection]"
-                  connectionManagerID="{F54E23FD-8426-4A9A-9DE0-DFD760A6248C}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1259,18 +1296,41 @@ FROM [dbo].[Treatment]</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].Columns[Name]"
-                      cachedDataType="nText"
+                      cachedDataType="wstr"
+                      cachedLength="50"
                       cachedName="Name"
                       externalMetadataColumnId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[Name]"
                       lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Name]" />
                     <inputColumn
-                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].Columns[PricePerTake]"
-                      cachedDataType="numeric"
-                      cachedName="PricePerTake"
-                      cachedPrecision="4"
-                      cachedScale="2"
-                      externalMetadataColumnId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[PricePerTake]"
-                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[PricePerTake]" />
+                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].Columns[Volume]"
+                      cachedDataType="i2"
+                      cachedName="Volume"
+                      externalMetadataColumnId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[Volume]"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Volume]" />
+                    <inputColumn
+                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].Columns[Price]"
+                      cachedDataType="i2"
+                      cachedName="Price"
+                      externalMetadataColumnId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[Price]"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Price]" />
+                    <inputColumn
+                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].Columns[Experimental]"
+                      cachedDataType="bool"
+                      cachedName="Experimental"
+                      externalMetadataColumnId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[Experimental]"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Experimental]" />
+                    <inputColumn
+                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].Columns[AgeRestriction]"
+                      cachedDataType="bool"
+                      cachedName="AgeRestriction"
+                      externalMetadataColumnId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[AgeRestriction]"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[AgeRestriction]" />
+                    <inputColumn
+                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].Columns[MinimalAge]"
+                      cachedDataType="ui1"
+                      cachedName="MinimalAge"
+                      externalMetadataColumnId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[MinimalAge]"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[MinimalAge]" />
                     <inputColumn
                       refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].Columns[Id]"
                       cachedDataType="i4"
@@ -1290,11 +1350,25 @@ FROM [dbo].[Treatment]</property>
                       length="2147483647"
                       name="Name" />
                     <externalMetadataColumn
-                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[PricePerTake]"
-                      dataType="numeric"
-                      name="PricePerTake"
-                      precision="4"
-                      scale="2" />
+                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[Volume]"
+                      dataType="i2"
+                      name="Volume" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[Price]"
+                      dataType="i2"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[Experimental]"
+                      dataType="bool"
+                      name="Experimental" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[AgeRestriction]"
+                      dataType="bool"
+                      name="AgeRestriction" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[MinimalAge]"
+                      dataType="i4"
+                      name="MinimalAge" />
                     <externalMetadataColumn
                       refId="Package\Dim_Medicine\Dim_Medicine.Inputs[ADO NET Destination Input].ExternalColumns[Sub_Id]"
                       dataType="i4"
@@ -1368,8 +1442,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_Medicine\Medicine.Connections[IDbConnection]"
-                  connectionManagerID="{94C27DC2-6DC8-4174-9A24-BB58783D71C9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.Clinic]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1389,23 +1463,58 @@ FROM [dbo].[Treatment]</property>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Name]"
-                      dataType="nText"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[Name]"
+                      length="50"
                       lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Name]"
                       name="Name"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[PricePerTake]"
-                      dataType="numeric"
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Volume]"
+                      dataType="i2"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[PricePerTake]"
-                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[PricePerTake]"
-                      name="PricePerTake"
-                      precision="4"
-                      scale="2"
+                      externalMetadataColumnId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[Volume]"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Volume]"
+                      name="Volume"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Price]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[Price]"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Price]"
+                      name="Price"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Experimental]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[Experimental]"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[Experimental]"
+                      name="Experimental"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[AgeRestriction]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[AgeRestriction]"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[AgeRestriction]"
+                      name="AgeRestriction"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[MinimalAge]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[MinimalAge]"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].Columns[MinimalAge]"
+                      name="MinimalAge"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -1416,14 +1525,29 @@ FROM [dbo].[Treatment]</property>
                       name="Id" />
                     <externalMetadataColumn
                       refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[Name]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="50"
                       name="Name" />
                     <externalMetadataColumn
-                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[PricePerTake]"
-                      dataType="numeric"
-                      name="PricePerTake"
-                      precision="4"
-                      scale="2" />
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[Volume]"
+                      dataType="i2"
+                      name="Volume" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[Price]"
+                      dataType="i2"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[Experimental]"
+                      dataType="bool"
+                      name="Experimental" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[AgeRestriction]"
+                      dataType="bool"
+                      name="AgeRestriction" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Output].ExternalColumns[MinimalAge]"
+                      dataType="ui1"
+                      name="MinimalAge" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1438,16 +1562,35 @@ FROM [dbo].[Treatment]</property>
                       name="Id" />
                     <outputColumn
                       refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[Name]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="50"
                       lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[Name]"
                       name="Name" />
                     <outputColumn
-                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[PricePerTake]"
-                      dataType="numeric"
-                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[PricePerTake]"
-                      name="PricePerTake"
-                      precision="4"
-                      scale="2" />
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[Volume]"
+                      dataType="i2"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[Volume]"
+                      name="Volume" />
+                    <outputColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[Price]"
+                      dataType="i2"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[Price]"
+                      name="Price" />
+                    <outputColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[Experimental]"
+                      dataType="bool"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[Experimental]"
+                      name="Experimental" />
+                    <outputColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[AgeRestriction]"
+                      dataType="bool"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[AgeRestriction]"
+                      name="AgeRestriction" />
+                    <outputColumn
+                      refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[MinimalAge]"
+                      dataType="ui1"
+                      lineageId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[MinimalAge]"
+                      name="MinimalAge" />
                     <outputColumn
                       refId="Package\Dim_Medicine\Medicine.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -1527,8 +1670,8 @@ FROM [dbo].[Treatment]</property>
               <connections>
                 <connection
                   refId="Package\Dim_Patient\Dim_Patien.Connections[IDbConnection]"
-                  connectionManagerID="{F54E23FD-8426-4A9A-9DE0-DFD760A6248C}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1541,19 +1684,22 @@ FROM [dbo].[Treatment]</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\Dim_Patient\Dim_Patien.Inputs[ADO NET Destination Input].Columns[FirstName]"
-                      cachedDataType="nText"
+                      cachedDataType="wstr"
+                      cachedLength="50"
                       cachedName="FirstName"
                       externalMetadataColumnId="Package\Dim_Patient\Dim_Patien.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
                       lineageId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].Columns[FirstName]" />
                     <inputColumn
                       refId="Package\Dim_Patient\Dim_Patien.Inputs[ADO NET Destination Input].Columns[LastName]"
-                      cachedDataType="nText"
+                      cachedDataType="wstr"
+                      cachedLength="50"
                       cachedName="LastName"
                       externalMetadataColumnId="Package\Dim_Patient\Dim_Patien.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
                       lineageId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].Columns[LastName]" />
                     <inputColumn
                       refId="Package\Dim_Patient\Dim_Patien.Inputs[ADO NET Destination Input].Columns[Address]"
-                      cachedDataType="nText"
+                      cachedDataType="wstr"
+                      cachedLength="120"
                       cachedName="Address"
                       externalMetadataColumnId="Package\Dim_Patient\Dim_Patien.Inputs[ADO NET Destination Input].ExternalColumns[Address]"
                       lineageId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].Columns[Address]" />
@@ -1675,8 +1821,8 @@ LEFT JOIN [dbo].[Client] AS C ON C.id = Pr.client_id</property>
               <connections>
                 <connection
                   refId="Package\Dim_Patient\Patient.Connections[IDbConnection]"
-                  connectionManagerID="{94C27DC2-6DC8-4174-9A24-BB58783D71C9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.Clinic]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1696,28 +1842,31 @@ LEFT JOIN [dbo].[Client] AS C ON C.id = Pr.client_id</property>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].Columns[FirstName]"
-                      dataType="nText"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="50"
                       lineageId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].Columns[FirstName]"
                       name="FirstName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].Columns[LastName]"
-                      dataType="nText"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="50"
                       lineageId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].Columns[LastName]"
                       name="LastName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].Columns[Address]"
-                      dataType="nText"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].ExternalColumns[Address]"
+                      length="120"
                       lineageId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].Columns[Address]"
                       name="Address"
                       truncationRowDisposition="FailComponent" />
@@ -1739,15 +1888,18 @@ LEFT JOIN [dbo].[Client] AS C ON C.id = Pr.client_id</property>
                       name="Id" />
                     <externalMetadataColumn
                       refId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="50"
                       name="FirstName" />
                     <externalMetadataColumn
                       refId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="50"
                       name="LastName" />
                     <externalMetadataColumn
                       refId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].ExternalColumns[Address]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="120"
                       name="Address" />
                     <externalMetadataColumn
                       refId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Output].ExternalColumns[Age]"
@@ -1767,17 +1919,20 @@ LEFT JOIN [dbo].[Client] AS C ON C.id = Pr.client_id</property>
                       name="Id" />
                     <outputColumn
                       refId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Error Output].Columns[FirstName]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="50"
                       lineageId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Error Output].Columns[FirstName]"
                       name="FirstName" />
                     <outputColumn
                       refId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Error Output].Columns[LastName]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="50"
                       lineageId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Error Output].Columns[LastName]"
                       name="LastName" />
                     <outputColumn
                       refId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Error Output].Columns[Address]"
-                      dataType="nText"
+                      dataType="wstr"
+                      length="120"
                       lineageId="Package\Dim_Patient\Patient.Outputs[ADO NET Source Error Output].Columns[Address]"
                       name="Address" />
                     <outputColumn
@@ -1864,8 +2019,8 @@ LEFT JOIN [dbo].[Client] AS C ON C.id = Pr.client_id</property>
               <connections>
                 <connection
                   refId="Package\Dim_Treatment\Dim_Treatment.Connections[IDbConnection]"
-                  connectionManagerID="{F54E23FD-8426-4A9A-9DE0-DFD760A6248C}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.ClinicDW]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -1962,8 +2117,8 @@ LEFT JOIN [dbo].[Client] AS C ON C.id = Pr.client_id</property>
               <connections>
                 <connection
                   refId="Package\Dim_Treatment\Treatment.Connections[IDbConnection]"
-                  connectionManagerID="{94C27DC2-6DC8-4174-9A24-BB58783D71C9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.Clinic]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.Clinic]"
                   description="Managed connection manager"
                   name="IDbConnection" />
               </connections>
@@ -2133,255 +2288,6 @@ LEFT JOIN [dbo].[Client] AS C ON C.id = Pr.client_id</property>
           version="1">
           <components>
             <component
-              refId="Package\Fact_Report\DB"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="DB"
-              usesDispositions="true"
-              version="7">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT T.Id AS TreatmentId
-	, T.DoctorId AS DoctorId
-	, T.PatientId AS PatientId
-	, T.IllnessId AS IllnessId
-	, Pr.MedicineId AS MedicineId
-	, T.StartDate AS StartDate
-	, T.EndDate AS EndDate
-	, M.PricePerTake AS Price
-FROM [dbo].[Treatment] T
-JOIN [dbo].[Prescription] AS Pr ON Pr.TreatmentId = T.Id
-JOIN [dbo].[Patient] AS P ON P.Id = T.PatientId
-JOIN [dbo].[Medicine] AS M ON M.Id = Pr.MedicineId</property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">2</property>
-                <property
-                  dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Fact_Report\DB.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.Clinic1]"
-                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.Clinic1]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[IllnessId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[IllnessId]"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[IllnessId]"
-                      name="IllnessId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[DoctorId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[DoctorId]"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[DoctorId]"
-                      name="DoctorId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[PatientId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[PatientId]"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[PatientId]"
-                      name="PatientId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[MedicineId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[MedicineId]"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[MedicineId]"
-                      name="MedicineId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[StartDate]"
-                      dataType="dbDate"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[StartDate]"
-                      name="StartDate"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[EndDate]"
-                      dataType="dbDate"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[EndDate]"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[EndDate]"
-                      name="EndDate"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[TreatmentId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[TreatmentId]"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[TreatmentId]"
-                      name="TreatmentId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[Price]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[Price]"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[Price]"
-                      name="Price"
-                      precision="4"
-                      scale="2"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[IllnessId]"
-                      dataType="i4"
-                      name="IllnessId" />
-                    <externalMetadataColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[DoctorId]"
-                      dataType="i4"
-                      name="DoctorId" />
-                    <externalMetadataColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[PatientId]"
-                      dataType="i4"
-                      name="PatientId" />
-                    <externalMetadataColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[MedicineId]"
-                      dataType="i4"
-                      name="MedicineId" />
-                    <externalMetadataColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
-                      dataType="dbDate"
-                      name="StartDate" />
-                    <externalMetadataColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[EndDate]"
-                      dataType="dbDate"
-                      name="EndDate" />
-                    <externalMetadataColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[TreatmentId]"
-                      dataType="i4"
-                      name="TreatmentId" />
-                    <externalMetadataColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].ExternalColumns[Price]"
-                      dataType="numeric"
-                      name="Price"
-                      precision="4"
-                      scale="2" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output]"
-                  isErrorOut="true"
-                  name="OLE DB Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[TreatmentId]"
-                      dataType="i4"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[TreatmentId]"
-                      name="TreatmentId" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[IllnessId]"
-                      dataType="i4"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[IllnessId]"
-                      name="IllnessId" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[DoctorId]"
-                      dataType="i4"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[DoctorId]"
-                      name="DoctorId" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[PatientId]"
-                      dataType="i4"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[PatientId]"
-                      name="PatientId" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[MedicineId]"
-                      dataType="i4"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[MedicineId]"
-                      name="MedicineId" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[StartDate]"
-                      dataType="dbDate"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[StartDate]"
-                      name="StartDate" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[EndDate]"
-                      dataType="dbDate"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[EndDate]"
-                      name="EndDate" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[Price]"
-                      dataType="numeric"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[Price]"
-                      name="Price"
-                      precision="4"
-                      scale="2" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\Fact_Report\Derived Column"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -2395,12 +2301,28 @@ JOIN [dbo].[Medicine] AS M ON M.Id = Pr.MedicineId</property>
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Fact_Report\Derived Column.Inputs[Derived Column Input].Columns[Price]"
-                      cachedDataType="numeric"
-                      cachedName="Price"
-                      cachedPrecision="4"
-                      cachedScale="2"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[Price]" />
+                      refId="Package\Fact_Report\Derived Column.Inputs[Derived Column Input].Columns[SavedPrice]"
+                      cachedDataType="i2"
+                      cachedName="SavedPrice"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[SavedPrice]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[SavedPrice]} * 1.2</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SavedPrice * 1.2</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -2412,32 +2334,6 @@ JOIN [dbo].[Medicine] AS M ON M.Id = Pr.MedicineId</property>
                   exclusionGroup="1"
                   name="Derived Column Output"
                   synchronousInputId="Package\Fact_Report\Derived Column.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Fact_Report\Derived Column.Outputs[Derived Column Output].Columns[Taxed Price]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\Fact_Report\Derived Column.Outputs[Derived Column Output].Columns[Taxed Price]"
-                      name="Taxed Price"
-                      precision="16"
-                      scale="3"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">(#{Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[Price]} + 1) * 1.1</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">(Price + 1) * 1.1</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
@@ -2522,7 +2418,7 @@ where [refTable].[date] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[EndDate]};</property>
+                  name="ParameterMap">#{Package\Fact_Report\383:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2549,7 +2445,7 @@ where [refTable].[date] = ?</property>
                       refId="Package\Fact_Report\Dim_DateEnd Metric.Inputs[Lookup Input].Columns[EndDate]"
                       cachedDataType="dbDate"
                       cachedName="EndDate"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[EndDate]">
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[EndDate]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -2680,7 +2576,7 @@ where [refTable].[date] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[StartDate]};</property>
+                  name="ParameterMap">#{Package\Fact_Report\384:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2707,7 +2603,7 @@ where [refTable].[date] = ?</property>
                       refId="Package\Fact_Report\Dim_DateStart Metric.Inputs[Lookup Input].Columns[StartDate]"
                       cachedDataType="dbDate"
                       cachedName="StartDate"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[StartDate]">
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[StartDate]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -2838,7 +2734,7 @@ where [refTable].[Sub_Id] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[DoctorId]};</property>
+                  name="ParameterMap">#{Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[DoctorId]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2865,7 +2761,7 @@ where [refTable].[Sub_Id] = ?</property>
                       refId="Package\Fact_Report\Dim_Doctor Metric.Inputs[Lookup Input].Columns[DoctorId]"
                       cachedDataType="i4"
                       cachedName="DoctorId"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[DoctorId]">
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[DoctorId]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -2996,7 +2892,7 @@ where [refTable].[Sub_Id] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[IllnessId]};</property>
+                  name="ParameterMap">#{Package\Fact_Report\385:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -3023,7 +2919,7 @@ where [refTable].[Sub_Id] = ?</property>
                       refId="Package\Fact_Report\Dim_Illness Metric.Inputs[Lookup Input].Columns[IllnessId]"
                       cachedDataType="i4"
                       cachedName="IllnessId"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[IllnessId]">
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[IllnessId]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -3154,7 +3050,7 @@ where [refTable].[Sub_Id] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[MedicineId]};</property>
+                  name="ParameterMap">#{Package\Fact_Report\386:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -3181,7 +3077,7 @@ where [refTable].[Sub_Id] = ?</property>
                       refId="Package\Fact_Report\Dim_Medicine Metric.Inputs[Lookup Input].Columns[MedicineId]"
                       cachedDataType="i4"
                       cachedName="MedicineId"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[MedicineId]">
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[MedicineId]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -3312,7 +3208,7 @@ where [refTable].[Sub_Id] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[PatientId]};</property>
+                  name="ParameterMap">#{Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[PatientId]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -3339,7 +3235,7 @@ where [refTable].[Sub_Id] = ?</property>
                       refId="Package\Fact_Report\Dim_Patient Metric.Inputs[Lookup Input].Columns[PatientId]"
                       cachedDataType="i4"
                       cachedName="PatientId"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[PatientId]">
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[PatientId]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -3470,7 +3366,7 @@ where [refTable].[Sub_Id] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[TreatmentId]};</property>
+                  name="ParameterMap">#{Package\Fact_Report\387:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -3497,7 +3393,7 @@ where [refTable].[Sub_Id] = ?</property>
                       refId="Package\Fact_Report\Dim_Treatment Metric.Inputs[Lookup Input].Columns[TreatmentId]"
                       cachedDataType="i4"
                       cachedName="TreatmentId"
-                      lineageId="Package\Fact_Report\DB.Outputs[OLE DB Source Output].Columns[TreatmentId]">
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[TreatmentId]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -3644,6 +3540,12 @@ where [refTable].[Sub_Id] = ?</property>
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
+                      refId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Duration]"
+                      cachedDataType="i4"
+                      cachedName="Duration"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Duration]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[Duration]" />
+                    <inputColumn
                       refId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
                       cachedDataType="i4"
                       cachedName="id"
@@ -3686,13 +3588,19 @@ where [refTable].[Sub_Id] = ?</property>
                       externalMetadataColumnId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TreatmentId]"
                       lineageId="Package\Fact_Report\Dim_Treatment Metric.Outputs[Lookup Match Output].Columns[Id]" />
                     <inputColumn
-                      refId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Taxed Price]"
+                      refId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DaysOfUse]"
                       cachedDataType="numeric"
-                      cachedName="Taxed Price"
-                      cachedPrecision="16"
-                      cachedScale="3"
+                      cachedName="DaysOfUse"
+                      cachedPrecision="11"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DaysOfUse]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[DaysOfUse]" />
+                    <inputColumn
+                      refId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SavedPrice]"
+                      cachedDataType="i2"
+                      cachedName="SavedPrice"
                       externalMetadataColumnId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
-                      lineageId="Package\Fact_Report\Derived Column.Outputs[Derived Column Output].Columns[Taxed Price]" />
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[SavedPrice]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3730,8 +3638,18 @@ where [refTable].[Sub_Id] = ?</property>
                       name="TreatmentId" />
                     <externalMetadataColumn
                       refId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
-                      dataType="i4"
+                      dataType="i2"
                       name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Duration]"
+                      dataType="i2"
+                      name="Duration" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DaysOfUse]"
+                      dataType="numeric"
+                      name="DaysOfUse"
+                      precision="5"
+                      scale="1" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3753,6 +3671,293 @@ where [refTable].[Sub_Id] = ?</property>
                       refId="Package\Fact_Report\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Fact_Report\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fact_Report\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT T.Id AS TreatmentId
+	, T.DoctorId AS DoctorId
+	, T.PatientId AS PatientId
+	, T.IllnessId AS IllnessId
+	, Pr.MedicineId AS MedicineId
+	, T.StartDate AS StartDate
+	, T.EndDate AS EndDate
+	, CAST(M.Volume AS DECIMAL(5,1)) / Pr.IntakePerDay AS DaysOfUse
+	, M.Price AS SavedPrice
+	, DATEDIFF(DAY, T.StartDate, T.EndDate) AS Duration
+FROM [dbo].[Treatment] T
+JOIN [dbo].[Prescription] AS Pr ON Pr.TreatmentId = T.Id
+JOIN [dbo].[Patient] AS P ON P.Id = T.PatientId
+JOIN [dbo].[Medicine] AS M ON M.Id = Pr.MedicineId</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fact_Report\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DCNOTE142.Clinic1]"
+                  connectionManagerRefId="Package.ConnectionManagers[DCNOTE142.Clinic1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[TreatmentId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TreatmentId]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[TreatmentId]"
+                      name="TreatmentId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[DoctorId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DoctorId]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[DoctorId]"
+                      name="DoctorId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[PatientId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PatientId]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[PatientId]"
+                      name="PatientId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[IllnessId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IllnessId]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[IllnessId]"
+                      name="IllnessId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[MedicineId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MedicineId]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[MedicineId]"
+                      name="MedicineId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[StartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[StartDate]"
+                      name="StartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[EndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EndDate]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[EndDate]"
+                      name="EndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[DaysOfUse]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DaysOfUse]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[DaysOfUse]"
+                      name="DaysOfUse"
+                      precision="11"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[SavedPrice]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SavedPrice]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[SavedPrice]"
+                      name="SavedPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[Duration]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Duration]"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].Columns[Duration]"
+                      name="Duration"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TreatmentId]"
+                      dataType="i4"
+                      name="TreatmentId" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DoctorId]"
+                      dataType="i4"
+                      name="DoctorId" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PatientId]"
+                      dataType="i4"
+                      name="PatientId" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IllnessId]"
+                      dataType="i4"
+                      name="IllnessId" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MedicineId]"
+                      dataType="i4"
+                      name="MedicineId" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StartDate]"
+                      dataType="dbDate"
+                      name="StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EndDate]"
+                      dataType="dbDate"
+                      name="EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DaysOfUse]"
+                      dataType="numeric"
+                      name="DaysOfUse"
+                      precision="11"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SavedPrice]"
+                      dataType="i2"
+                      name="SavedPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Duration]"
+                      dataType="i4"
+                      name="Duration" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TreatmentId]"
+                      dataType="i4"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TreatmentId]"
+                      name="TreatmentId" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DoctorId]"
+                      dataType="i4"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DoctorId]"
+                      name="DoctorId" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PatientId]"
+                      dataType="i4"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PatientId]"
+                      name="PatientId" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IllnessId]"
+                      dataType="i4"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IllnessId]"
+                      name="IllnessId" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MedicineId]"
+                      dataType="i4"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MedicineId]"
+                      name="MedicineId" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StartDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StartDate]"
+                      name="StartDate" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EndDate]"
+                      name="EndDate" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DaysOfUse]"
+                      dataType="numeric"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DaysOfUse]"
+                      name="DaysOfUse"
+                      precision="11"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SavedPrice]"
+                      dataType="i2"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SavedPrice]"
+                      name="SavedPrice" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Duration]"
+                      dataType="i4"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Duration]"
+                      name="Duration" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -3806,7 +4011,7 @@ where [refTable].[Sub_Id] = ?</property>
               refId="Package\Fact_Report.Paths[OLE DB Source Output]"
               endId="Package\Fact_Report\Dim_Doctor Metric.Inputs[Lookup Input]"
               name="OLE DB Source Output"
-              startId="Package\Fact_Report\DB.Outputs[OLE DB Source Output]" />
+              startId="Package\Fact_Report\OLE DB Source.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -4048,7 +4253,7 @@ where [refTable].[Sub_Id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="240.600000361886,630.588235221723">
+          TopLeft="240.600000361885,630.588235221723">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -4075,7 +4280,7 @@ where [refTable].[Sub_Id] = ?</property>
     design-time-name="Package\Dim_DateEnd">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="124.8,41.6"
           Id="Package\Dim_DateEnd\Dim_Date"
@@ -4103,9 +4308,7 @@ where [refTable].[Sub_Id] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4131,7 +4334,7 @@ where [refTable].[Sub_Id] = ?</property>
     design-time-name="Package\Dim_DateStart">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="124.8,41.6"
           Id="Package\Dim_DateStart\Dim_Date"
@@ -4159,9 +4362,7 @@ where [refTable].[Sub_Id] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4187,7 +4388,7 @@ where [refTable].[Sub_Id] = ?</property>
     design-time-name="Package\Dim_Doctor">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="134.4,41.6"
           Id="Package\Dim_Doctor\Dim_Doctor"
@@ -4215,9 +4416,7 @@ where [refTable].[Sub_Id] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4243,7 +4442,7 @@ where [refTable].[Sub_Id] = ?</property>
     design-time-name="Package\Dim_Illness">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="108,41.6"
           Id="Package\Dim_Illness\Illness"
@@ -4271,9 +4470,7 @@ where [refTable].[Sub_Id] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4299,37 +4496,35 @@ where [refTable].[Sub_Id] = ?</property>
     design-time-name="Package\Dim_Medicine">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="119.2,41.6"
-          Id="Package\Dim_Medicine\Medicine"
-          TopLeft="307.999995410442,113.999998301268" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="144,41.6"
           Id="Package\Dim_Medicine\Dim_Medicine"
           TopLeft="294.999995604157,228.999996587634" />
+        <NodeLayout
+          Size="119.2,41.6"
+          Id="Package\Dim_Medicine\Medicine"
+          TopLeft="307.999995410442,113.999998301268" />
         <EdgeLayout
           Id="Package\Dim_Medicine.Paths[ADO NET Source Output]"
           TopLeft="367.2999955073,155.599998301268">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,73.3999982863663"
+              EndConnector="0,73.399998286366"
               Start="0,0"
-              End="0,65.8999982863663">
+              End="0,65.899998286366">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,65.8999982863663" />
+                    End="0,65.899998286366" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4359,25 +4554,25 @@ where [refTable].[Sub_Id] = ?</property>
         <NodeLayout
           Size="111.2,41.6"
           Id="Package\Dim_Patient\Patient"
-          TopLeft="371.428566258781,130.705880373098" />
+          TopLeft="364.285709100719,141.411762716655" />
         <NodeLayout
           Size="132,41.6"
           Id="Package\Dim_Patient\Dim_Patien"
           TopLeft="359.999995146479,246.705878644563" />
         <EdgeLayout
           Id="Package\Dim_Patient.Paths[ADO NET Source Output]"
-          TopLeft="426.51428070263,172.305880373098">
+          TopLeft="422.942852123599,183.011762716655">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,74.3999982714651"
+              EndConnector="0,63.6941159279079"
               Start="0,0"
-              End="0,66.8999982714651">
+              End="0,56.1941159279079">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,66.8999982714651" />
+                    End="0,56.1941159279079" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4465,9 +4660,13 @@ where [refTable].[Sub_Id] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="92,41.6"
-          Id="Package\Fact_Report\DB"
-          TopLeft="250.285714699298,30.7647058588927" />
+          Size="170.4,46.4"
+          Id="Package\Fact_Report\OLE DB Destination"
+          TopLeft="660.085715731734,297.988235753786" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Fact_Report\Derived Column"
+          TopLeft="664.285715699804,213.352940989458" />
         <NodeLayout
           Size="174.4,41.6"
           Id="Package\Fact_Report\Dim_DateEnd Metric"
@@ -4485,6 +4684,10 @@ where [refTable].[Sub_Id] = ?</property>
           Id="Package\Fact_Report\Dim_Treatment Metric"
           TopLeft="422.571418588867,210.83529193223" />
         <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Fact_Report\OLE DB Source"
+          TopLeft="219.999996721745,23.9999996423721" />
+        <NodeLayout
           Size="179.2,41.6"
           Id="Package\Fact_Report\Dim_DateStart Metric"
           TopLeft="421.971426314054,126.599995069469" />
@@ -4496,10 +4699,30 @@ where [refTable].[Sub_Id] = ?</property>
           Size="167.2,41.6"
           Id="Package\Fact_Report\Dim_Patient Metric"
           TopLeft="220.999993130565,218.705878514835" />
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Fact_Report\OLE DB Destination"
-          TopLeft="651.085715865845,293.98823581339" />
+        <EdgeLayout
+          Id="Package\Fact_Report.Paths[Lookup Match Output1]"
+          TopLeft="305.14285025031,260.305878514835">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.764706194607"
+              Start="0,0"
+              End="0,32.264706194607">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.264706194607" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.3276655973035,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Fact_Report.Paths[Lookup Match Output]"
           TopLeft="301.842850302464,157.070585946239">
@@ -4521,6 +4744,74 @@ where [refTable].[Sub_Id] = ?</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-48.19138671875,21.262958784298,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Fact_Report.Paths[Derived Column Output]"
+          TopLeft="742.985715715769,254.952940989458">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.0352947643278"
+              Start="0,0"
+              End="0,35.5352947643278">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5352947643278" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Fact_Report.Paths[OLE DB Source Output]"
+          TopLeft="296.942852098054,65.5999996423721">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.8705863038669"
+              Start="0,0"
+              End="0,42.3705863038669">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.3705863038669" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Fact_Report.Paths[Lookup Match Output6]"
+          TopLeft="741.585715809435,170.588236389276">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.764704600182"
+              Start="0,0"
+              End="0,35.264704600182">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.264704600182" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,11.827664800091,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4568,31 +4859,31 @@ where [refTable].[Sub_Id] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-24.8842419162447,5,96.3827734375,11.609375"
+              BoundingBox="-30.6342417746835,1,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Fact_Report.Paths[Lookup Match Output3]"
-          TopLeft="513.071422451461,210.83529193223">
+          TopLeft="513.07142245146,210.83529193223">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-42.6352968627606"
+              EndConnector="0,-42.635296862761"
               Start="0,0"
-              End="0,-35.1352968627606">
+              End="0,-35.135296862761">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-35.1352968627606" />
+                    End="0,-35.135296862761" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,-23.3723359313803,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,-23.3723359313805,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4602,128 +4893,37 @@ where [refTable].[Sub_Id] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-45.0352913019983"
+              EndConnector="0,-45.035291301998"
               Start="0,0"
-              End="0,-37.5352913019983">
+              End="0,-37.535291301998">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-37.5352913019983" />
+                    End="0,-37.535291301998" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,-24.5723331509992,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,-24.572333150999,96.3827734375,11.609375"
               RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Fact_Report.Paths[Lookup Match Output1]"
-          TopLeft="305.14285025031,260.305878514835">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,39.764706194607"
-              Start="0,0"
-              End="0,32.264706194607">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.264706194607" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,10.3276655973035,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Fact_Report.Paths[OLE DB Source Output]"
-          TopLeft="297.685711086831,72.3647058588927">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43.1058800873463"
-              Start="0,0"
-              End="0,35.6058800873463">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.6058800873463" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Fact_Report\Derived Column"
-          TopLeft="664.285715699804,213.352940989458" />
-        <EdgeLayout
-          Id="Package\Fact_Report.Paths[Lookup Match Output6]"
-          TopLeft="741.585715809435,170.588236389276">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,42.7647046001823"
-              Start="0,0"
-              End="0,35.2647046001823">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.2647046001823" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,11.8276648000911,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Fact_Report.Paths[Derived Column Output]"
-          TopLeft="738.485715782825,254.952940989458">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,39.0352948239317"
-              Start="0,0"
-              End="0,31.5352948239317">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.5352948239317" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Fact_Report\DB">
+    design-time-name="Package\Fact_Report\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -4733,7 +4933,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4743,7 +4943,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4756,7 +4956,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4766,7 +4966,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4779,7 +4979,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4789,7 +4989,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4802,7 +5002,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4812,8 +5012,16 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Fact_Report\OLE DB Source">
+    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -4825,7 +5033,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4835,7 +5043,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4848,7 +5056,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4858,7 +5066,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4871,7 +5079,7 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4881,23 +5089,10 @@ where [refTable].[Sub_Id] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Fact_Report\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
